@@ -1,0 +1,43 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    {{ category.name }}
+{% endblock %}
+{% block body_block %}
+        <h1>Rango says...</h1>>
+
+        <div>hey there partner! </div>
+
+        <div>
+        {% if categories %}
+        <h2>Top five Categories.</h2>
+        <ul>
+            {% for category in categories %}
+                <li>
+                <a href="{% url 'show_category' category.slug %}">{{ category.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            <stron>There are no categories present.</stron>
+        {% endif %}
+        </div>
+        <div>
+            <h2>Top five pages</h2>
+            {% if pages %}
+            <ul>
+                {% for page in pages %}
+                <li><a href="{{ page.url }}">{{ page.title }}</a> </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <strong>There are no pages present.</strong>
+            {% endif %}
+        </div>
+
+        <div>
+            <img src="{% static 'images/rango.jpg' %}"
+                 alt="Picture of Rango" />
+        </div>
+{% endblock %}
